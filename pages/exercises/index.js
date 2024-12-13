@@ -1,24 +1,20 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState, useRef } from 'react'
-import { useOnClickOutside } from '../hooks'
-import styles from '../styles/Home.module.css'
+import { useOnClickOutside } from '../../hooks'
+import styles from '../../styles/Home.module.css'
+import {StyledPageSelection, StyledExerciseList, TestSelect} from './styles'
 
-import ExerciseList from '../components/ExerciseList'
-import { StyledPageSelection } from './exercises/styles'
-import Burger from '../components/Burger'
-import Menu from '../components/Menu'
-import SearchBar from '../components/Search/Search'
+import Burger from '../../components/Burger'
+import Menu from '../../components/Menu'
+import SearchBar from '../../components/Search/Search'
 
 export default function Home() {
 
   const [open, setOpen] = useState(false);
   const node = useRef();
+  
   useOnClickOutside(node, () => setOpen(false));
-
-
-  //const {search} = window.location;
-  //const query = new URLSearchParams(search).get(s);
 
   return (
     <div className={styles.container}>
@@ -33,14 +29,14 @@ export default function Home() {
       <div ref={node}>
         <Burger open={open} setOpen={setOpen}/>
         <Menu open={open} setOpen={setOpen}/>
-      </div>     
+      </div>
 
         <h2 className={styles.title}>
           Welcome to Swole Not Swollen, an app to organize your circus maintenance pursuits!
         </h2>
 
       <div className='pageDropdown'>
-        <StyledPageSelection/>
+        <StyledPageSelection pageName="Exercises"/>
       </div> 
 
       <div>
@@ -48,7 +44,14 @@ export default function Home() {
       </div>
 
       <div>
-        <ExerciseList/>
+        <ul>
+          <TestSelect>Test Item 1</TestSelect>
+          <TestSelect>Test Item 2</TestSelect>
+        </ul>
+      </div>
+
+      <div>
+        <StyledExerciseList/>
       </div>
 
       </main>
